@@ -54,17 +54,23 @@ shinyServer(
     
     output$total_plot = renderPlot(
       {
-        par(mar=c(4,4,4,0.1))
-        hist(posterior()[,1], freq=FALSE, main="Total Jelly Beans")
-        lines(density( priors()$total ),col='green',lwd=3)
+        h = hist(posterior()[,1], plot=FALSE)
+        d = density(priors()$total)
+        
+        hist(posterior()[,1], main="Post. of N total", freq=FALSE, 
+             ylim=range(c(h$density,d$y)), xlim=range(d$x), xlab="")
+        lines(d, col='blue',lwd=2)
       }
     )
     
     output$prop_plot = renderPlot(
       {
-        par(mar=c(4,4,4,0.1))
-        hist(posterior()[,2], freq=FALSE, main="Proportion of Black Jelly Beans")
-        lines(density( priors()$prop ),col='blue',lwd=3)
+        h = hist(posterior()[,2], plot=FALSE)
+        d = density(priors()$prop, from=0, to=1)
+        
+        hist(posterior()[,2], main="Post. of prop. black", freq=FALSE,
+             ylim=range(c(h$density,d$y)), xlim=c(0,1), xlab="")
+        lines(d, col='blue',lwd=2)
       }
     )
   }
