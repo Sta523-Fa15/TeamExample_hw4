@@ -31,8 +31,8 @@ shinyUI(
       ),
       conditionalPanel(
         condition="input.prop_prior == 'beta'",
-        numericInput("prop_alpha",HTML("Total prior - &alpha;"), value = 1/3 , min=0, max=NA),
-        numericInput("prop_beta",HTML("Total prior - &beta;"), value = 1, min=0, max=NA)
+        numericInput("prop_alpha",HTML("Proportion prior - &alpha;"), value = 1/3 , min=0, max=NA),
+        numericInput("prop_beta",HTML("Proportion prior - &beta;"), value = 1, min=0, max=NA)
       ),
       conditionalPanel(
         condition="input.prop_prior == 'tnorm'",
